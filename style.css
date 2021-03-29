@@ -3,6 +3,10 @@
 	padding: 0px;
 }
 
+body {
+    background-color: black;
+}
+
 @font-face { /*lettertype*/
     font-family: 'robotoregular';
     src: url('roboto-regular-webfont.woff2') format('woff2'),
@@ -11,12 +15,9 @@
     font-style: normal;
 }
 
-body{
-    background-color: black;  
-  }
-  
 header{
   padding-top: 25px;
+  padding-bottom: 20px;
 }
 
 header > img{
@@ -26,3 +27,57 @@ header > img{
     border-radius: 10px;
     display: flex;
 }
+
+h2 {
+    font-family: 'robotoregular';
+    font-size: 0.9em;
+    color: white;
+    padding-bottom: 10px;
+}
+
+#map {
+    height: 60vh;
+    width: 70vw;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+  }
+
+#geocoder {
+    font-family: 'robotoregular';
+    font-size: 0.9em;
+    margin-top: -30px;
+}
+
+div > nav > a {
+    font-family: 'robotoregular';
+    font-size: 0.9em;
+    color: white;
+    text-decoration: none;
+    background-color: purple;
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+nav {
+    margin-left: 50px;
+    margin-top: 10px;
+}
+
+.nav > h2 {
+    margin-left: 50px;
+}
+
+#flex {
+    display: flex;
+    justify-content: space-around; 
+    margin-top: 20px;
+  }
+
+  #weather {
+    color: white;
+    font-weight: 600;
+    font-size: 1.2em; 
+    font-family: 'robotoregular';
+  }
