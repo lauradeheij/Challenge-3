@@ -5,65 +5,111 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibGF1dGpvIiwiYSI6ImNrbWtuNGpkZTEybW4zMXMxOWs5O
 var map = new mapboxgl.Map({
 	container: 'map',
 	style: 'mapbox://styles/mapbox/streets-v11',
-	center: [4.322840, 52.067101],
-	zoom: 12,
+	center: [-10, 30],
+	zoom: 1.7,
 });
-
-var popup = new mapboxgl.Popup().setHTML('<h3>De Haagse Hogeschool</h3><p>Is momenteel dicht.</p>');
-
-var marker = new mapboxgl.Marker()
-.setLngLat([4.324439, 52.067200])
-.setPopup(popup)
-.addTo(map);
-
+//marker toevoegen aan de 3 locaties van de knoppen
 var marker1 = new mapboxgl.Marker({color: "red"})
-.setLngLat([4.866883848739579, 52.310576770207135])
+.setLngLat([-81.79478782648586, 26.142056163543323])
 .addTo(map);
 
 var marker2 = new mapboxgl.Marker({color: "red"})
-.setLngLat([85.30993453506457, 27.688210579644643])
+.setLngLat([27.20927575397039, 35.50932310617226])
 .addTo(map);
 
 var marker3 = new mapboxgl.Marker({color: "red"})
-.setLngLat([23.479962884083793, 41.83851201722553])
+.setLngLat([-80.12782550949463, 25.78517228837048])
 .addTo(map);
 
-//------------Onclicks voor d eknoppen
-document.getElementById('knop1').onclick = function() {
-		// Fly to a random location by offsetting the point -74.50, 40
-		// by up to 5 degrees.
+//------------Onclicks voor de knoppen om het weer te weergeven
+
+document.getElementById('knop1').addEventListener("click", myWeer1);
+
+function myWeer1(){
 		map.flyTo({
-		center: [4.866883848739579, 52.310576770207135],
-		speed: 0.5,
-		essential: true // this animation is considered essential with respect to prefers-reduced-motion
-		});
-};
+			center: [-81.79478782648586, 26.142056163543323],
+			speed: 0.5,
+			essential: true // this animation is considered essential with respect to prefers-reduced-motion
+			});
+	
+	var request = 'https://api.openweathermap.org/data/2.5/weather?lat=26.142056163543323&lon=-81.79478782648586&appid=8a5c23272e8e2a20d548f968db21b5ee';
+	fetch(request)
+	// parse response to JSON format
+	.then(function(response) {
+		return response.json();
+		})
 
-document.getElementById('knop2').onclick = function() {
+		// do something with response
+		.then(function(response) {
+		// show full JSON object
+		console.log(response);
+		var weatherBox = document.getElementById('weather');
+	
+		var degC = Math.floor(response.main.temp - 273.15);
+		weatherBox.innerHTML = degC + '&#176;C <br>' + response.weather[0].description + '<br>' + 'Wind ' + response.wind.speed + ' m/s' + '<br>' + 'Windrichting ' + response.wind.deg + '&#176';
+		
+		});
+	
+};
+document.getElementById('knop2').addEventListener("click", myWeer2);
+
+function myWeer2(){
 	map.flyTo({
-		center: [85.30993453506457, 27.688210579644643],
+		center: [27.20927575397039, 35.50932310617226],
 		speed: 0.5,
 		essential: true // this animation is considered essential with respect to prefers-reduced-motion
 		});
-};
+	
+	var request = 'https://api.openweathermap.org/data/2.5/weather?lat=35.50932310617226&lon=27.20927575397039&appid=8a5c23272e8e2a20d548f968db21b5ee';
+	fetch(request)
+	// parse response to JSON format
+	.then(function(response) {
+		return response.json();
+		})
 
-document.getElementById('knop3').onclick = function() {
-	map.flyTo({
-		center: [0,10],
-		zoom: 2,
-		speed: 0.5,
-		essential: true // this animation is considered essential with respect to prefers-reduced-motion
+		// do something with response
+		.then(function(response) {
+		// show full JSON object
+		console.log(response);
+		var weatherBox = document.getElementById('weather');
+	
+		var degC = Math.floor(response.main.temp - 273.15);
+		weatherBox.innerHTML = degC + '&#176;C <br>' + response.weather[0].description + '<br>' + 'Wind ' + response.wind.speed + ' m/s' + '<br>' + 'Windrichting ' + response.wind.deg + '&#176';
+		
 		});
+	
 };
+	document.getElementById('knop3').addEventListener("click", myWeer3);
 
-//------------Geocoder--------------
+	function myWeer3(){
+		map.flyTo({
+			center: [-80.12782550949463, 25.78517228837048],
+			speed: 0.5,
+			essential: true // this animation is considered essential with respect to prefers-reduced-motion
+			});
+		
+		var request = 'https://api.openweathermap.org/data/2.5/weather?lat=25.78517228837048&lon=-80.12782550949463&appid=8a5c23272e8e2a20d548f968db21b5ee';
+		fetch(request)
+		// parse response to JSON format
+		.then(function(response) {
+			return response.json();
+			})
 
-// var geocoder = new MapboxGeocoder({
-// 	accessToken: mapboxgl.accessToken,
-// 	mapboxgl: mapboxgl
-// 	});
-	 
-// 	document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+			// do something with response
+			.then(function(response) {
+			// show full JSON object
+			console.log(response);
+			var weatherBox = document.getElementById('weather');
+		
+			var degC = Math.floor(response.main.temp - 273.15);
+			weatherBox.innerHTML = degC + '&#176;C <br>' + response.weather[0].description + '<br>' + 'Wind ' + response.wind.speed + ' m/s' + '<br>' + 'Windrichting ' + response.wind.deg + '&#176';
+			
+			});
+		
+	};
+
+
+//------------Geocoder en openweather api--------------
 
 		var geocoder = new MapboxGeocoder({
 			accessToken: mapboxgl.accessToken,
@@ -87,25 +133,23 @@ document.getElementById('knop3').onclick = function() {
 				essential: true // this animation is considered essential with respect to prefers-reduced-motion
 				});
 			
-				var request = 'https://api.openweathermap.org/data/2.5/weather?lat=' + response.result.center[1] + '&lon=' + response.result.center[0] + '&appid=8a5c23272e8e2a20d548f968db21b5ee'
+				var request = 'https://api.openweathermap.org/data/2.5/weather?lat=' + response.result.center[1] + '&lon=' + response.result.center[0] + '&appid=8a5c23272e8e2a20d548f968db21b5ee';
 				// get current weather
 				fetch(request)
 
 				// parse response to JSON format
-				.then(function(responseWeather) {
-				return responseWeather.json();
+				.then(function(response) {
+				return response.json();
 				})
 
 				// do something with response
-				.then(function(responseWeather) {
+				.then(function(response) {
 				// show full JSON object
+				console.log(response);
 				var weatherBox = document.getElementById('weather');
-
-				var degC = Math.floor(responseWeather.main.temp - 273.15);
-				weatherBox.innerHTML = degC + '&#176;C <br>' + responseWeather.weather[0].description;
+			
+				var degC = Math.floor(response.main.temp - 273.15);
+				weatherBox.innerHTML = degC + '&#176;C <br>' + response.weather[0].description + '<br>' + 'Wind ' + response.wind.speed + ' m/s' + '<br>' + 'Windrichting ' + response.wind.deg + '&#176';
                 
-                weatherBox.innerHTML = response.wind.speed + responseWeather.weather[0].description;
 				});
 			});
-
-//--------------------Open weather API--------------------

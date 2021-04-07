@@ -4,7 +4,9 @@
 }
 
 body {
-    background-color: black;
+    background-image: url(achtergrond.jfif);
+    background-size: cover;
+    height: 100vh;
 }
 
 @font-face { /*lettertype*/
@@ -28,7 +30,7 @@ header > img{
     display: flex;
 }
 
-h2 {
+p {
     font-family: 'robotoregular';
     font-size: 0.9em;
     color: white;
@@ -36,7 +38,7 @@ h2 {
 }
 
 #map {
-    height: 60vh;
+    height: 30vh;
     width: 70vw;
     margin-left: auto;
     margin-right: auto;
@@ -47,37 +49,167 @@ h2 {
     font-family: 'robotoregular';
     font-size: 0.9em;
     margin-top: -30px;
+    width: 200px;
 }
 
 div > nav > a {
     font-family: 'robotoregular';
-    font-size: 0.9em;
+    font-size: 0.8em;
     color: white;
     text-decoration: none;
-    background-color: purple;
+    background-color: #Ce068b;
     padding: 10px;
     border-radius: 10px;
     margin-right: 10px;
 }
 
 nav {
-    margin-left: 50px;
+    margin-bottom: 10px;
+}
+.nav {
+    margin-left: auto;
+    margin-right: auto;
+}
+nav > p {
     margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.nav > h2 {
-    margin-left: 50px;
+#locatie{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+#locatie > p{
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #flex {
-    display: flex;
-    justify-content: space-around; 
+    display:flex;
+    justify-content: center; 
+    flex-direction: column;
     margin-top: 20px;
   }
 
-  #weather {
+#weather {
     color: white;
     font-weight: 600;
     font-size: 1.2em; 
     font-family: 'robotoregular';
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+
   }
+
+span{
+      font-size: 0.1em;
+  }
+  
+  
+@media only screen and (min-width: 601px){
+    header > img{
+        width: 220px;
+      }
+
+    p {
+    font-size: 0.9em;
+    }
+
+    #weather{
+        font-weight: 600;
+        font-size: 1.0em;
+        margin-top: 20px;
+    }
+
+    #map{
+        height: 35vh;
+        width: 80vw;
+    }
+
+    #flex {
+        display: flex;
+        justify-content: space-around; 
+        margin-top: 20px;
+        flex-direction: column;
+    }
+
+    #locatie {
+        margin-top: 10px;
+    }
+
+
+    @media only screen and (min-width: 901px){
+        header > img{
+            width: 270px;
+          }
+        
+          p{
+            font-size: 1.0em;
+        }
+        
+        #weather{
+            font-weight: 600;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        #flex {
+            display: flex;
+            justify-content: space-around; 
+            margin-top: 20px;
+            flex-direction: row;
+        }
+        
+        nav{
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+
+        weather{
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+
+        #map{
+            height: 40vh;
+            width: 80vw;
+        }
+       
+        locatie{
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-top: 10px;
+        }
+        @media only screen and (min-width: 1201px){
+            header > img{
+                width: 320px;
+              }
+
+            p{
+                font-size: 1.1em;
+            }
+
+            #weather{
+                font-weight: 600;
+                font-size: 1.3em;
+            }
+
+            #flex {
+                display: flex;
+                justify-content: space-around; 
+                margin-top: 20px;
+                flex-direction: row;
+            }
+
+            div > nav > a {
+                font-size: 1.0em;
+            }
+
+            #map{
+                height: 50vh;
+            }
